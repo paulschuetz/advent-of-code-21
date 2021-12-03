@@ -20,8 +20,7 @@ fun calculateNumberOfWindowedDepthIncreases(depthMeasurements: List<Int>): Int {
 }
 
 fun calculatePosition(moveInstructions: List<MoveInstruction>): Position {
-    return moveInstructions.fold(Position()) {
-        currentPosition, moveInstruction ->
+    return moveInstructions.fold(Position()) { currentPosition, moveInstruction ->
         applyInstruction(position = currentPosition, moveInstruction = moveInstruction)
     }
 }
@@ -35,8 +34,7 @@ private fun applyInstruction(position: Position, moveInstruction: MoveInstructio
 }
 
 fun calculatePositionWithAim(moveInstructions: List<MoveInstruction>): Position {
-    return moveInstructions.fold(Position()) {
-        currentPosition, moveInstruction ->
+    return moveInstructions.fold(Position()) { currentPosition, moveInstruction ->
         applyInstructionWithAim(position = currentPosition, moveInstruction = moveInstruction)
     }
 }
