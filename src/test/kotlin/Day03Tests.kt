@@ -27,7 +27,7 @@ class Day03Tests {
 
     @Test
     fun calculatePowerConsumptionSolution() {
-        val lines = File("src/test/resources/input-03.txt").readLines().toList()
+        val lines = File("src/test/resources/input-03.txt").readLines()
             .map { line -> line.toCharArray().map { if (it == '0') 0 else 1 } }
 
         val result = calculatePowerConsumption(bitLines = lines)
@@ -80,7 +80,7 @@ class Day03Tests {
 
     @Test
     fun calculateLifeSupportingRatingSolution() {
-        val lines = File("src/test/resources/input-03.txt").readLines().toList()
+        val lines = File("src/test/resources/input-03.txt").readLines()
             .map { line -> line.toCharArray().map { if (it == '0') 0 else 1 } }
 
         val oxygenGeneratorRating = calculateOxygenGeneratorRating(lines)

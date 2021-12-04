@@ -5,7 +5,7 @@ class Day02Tests {
 
     @Test
     fun calculatePosition() {
-        val moveInstructions = File("src/test/resources/input-02.txt").readLines().toList().map { lineToMoveInstruction(it) }
+        val moveInstructions = File("src/test/resources/input-02.txt").readLines().map { lineToMoveInstruction(it) }
 
         val finalPosition = calculatePositionWithAim(moveInstructions)
         println(finalPosition)
