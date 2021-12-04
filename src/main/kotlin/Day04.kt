@@ -24,6 +24,21 @@ fun calculateBingoWinnerBoard(boards: List<Board>, drawnNumbers: List<Int>): Boa
     throw Exception("No board has won 😥")
 }
 
+fun calculateLastWinningBingoBoard(boards: List<Board>, drawnNumbers: List<Int>): Board {
+    var lastWinningBoard: Board? = null
+
+    for (number in drawnNumbers) {
+        for (board in boards) {
+            if (!board.completed) {
+                applyNumberToBoard(board, number)
+                if (board.completed) lastWinningBoard = board
+            }
+        }
+    }
+
+    return lastWinningBoard ?: throw Exception("No board has won 😥")
+}
+
 private fun applyNumberToBoard(board: Board, number: Int): Board {
 
     rowLoop@ for (rowIndex in board.tileRows.indices) {
