@@ -1,10 +1,13 @@
-fun calculateNumberOfDepthIncreases(depthMeasurements: List<Int>): Int {
-    var increases = 0
-    for (i in 0..depthMeasurements.size - 2) {
-        if (depthMeasurements[i] < depthMeasurements[i + 1]) increases++
-    }
-    return increases
-}
+data class DepthAcc(
+    val lastDepth: Int,
+    val depthIncreases: Int
+)
+
+fun calculateNumberOfDepthIncreases(depthMeasurements: List<Int>): Int =
+    depthMeasurements.fold(DepthAcc(lastDepth = 0, depthIncreases = 0)) { acc, next ->
+        if (next > acc.lastDepth) DepthAcc(lastDepth = next, depthIncreases = acc.depthIncreases + 1)
+        else DepthAcc(lastDepth = next, depthIncreases = acc.depthIncreases)
+    }.depthIncreases - 1
 
 fun calculateNumberOfWindowedDepthIncreases(depthMeasurements: List<Int>): Int {
     // edge case
