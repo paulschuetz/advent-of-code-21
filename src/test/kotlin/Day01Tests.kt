@@ -1,5 +1,3 @@
-import lib.calculateNumberOfDepthIncreases
-import lib.calculateNumberOfWindowedDepthIncreases
 import org.junit.jupiter.api.Test
 import java.io.File
 
@@ -12,7 +10,7 @@ class Day01Tests {
     }
 
     @Test
-    fun testDepthAggregated() {
+    fun testDepthWindowed() {
         val inputLines = File("src/test/resources/input-01.txt").readLines().toList().map { Integer.parseInt(it) }
         val result = calculateNumberOfWindowedDepthIncreases(depthMeasurements = inputLines)
         println(result)

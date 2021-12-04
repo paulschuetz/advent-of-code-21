@@ -1,6 +1,3 @@
-import lib.Direction
-import lib.MoveInstruction
-import lib.calculatePositionWithAim
 import org.junit.jupiter.api.Test
 import java.io.File
 
