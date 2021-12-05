@@ -11,7 +11,7 @@ data class HydrothermalVentureLine(
 /**
  * Calculates the number of coordinates where at least two hydrothermal ventures 🌪 overlap.
  */
-fun calculateHydrothermalVentureThreat(lines: List<HydrothermalVentureLine>): Int {
+fun calculateHydrothermalVentureThreat(lines: List<HydrothermalVentureLine>, considerDiagonals: Boolean): Int {
     // first level corresponds to y coordinate, second level is x coordinate
     val area = mutableMapOf<Int, MutableMap<Int, Int>>()
 
@@ -24,10 +24,18 @@ fun calculateHydrothermalVentureThreat(lines: List<HydrothermalVentureLine>): In
             }
         }
         // y coordinates are equal, and we have a horizontal line
-        if (line.start.y == line.end.y) {
+        else if (line.start.y == line.end.y) {
             for (x in line.start.x toward line.end.x) {
                 area.computeIfAbsent(line.start.y) { mutableMapOf() }
                     .compute(x) { _, v -> if (v == null) 1 else v + 1 }
+            }
+        } else {
+            // otherwise, it is a 45 degree diagonal line (needed for second star)
+            if (considerDiagonals) {
+                val yIterator = (line.start.y toward line.end.y).iterator()
+                for (x in line.start.x toward line.end.x)
+                    area.computeIfAbsent(yIterator.nextInt()) { mutableMapOf() }
+                        .compute(x) { _, v -> if (v == null) 1 else v + 1 }
             }
         }
     }

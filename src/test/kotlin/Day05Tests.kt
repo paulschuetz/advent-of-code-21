@@ -17,7 +17,8 @@ class Day05Tests {
                 HydrothermalVentureLine(start = Coordinate(3, 4), end = Coordinate(1, 4)),
                 HydrothermalVentureLine(start = Coordinate(0, 0), end = Coordinate(8, 8)),
                 HydrothermalVentureLine(start = Coordinate(5, 5), end = Coordinate(8, 2)),
-            )
+            ),
+            considerDiagonals = false
         )
 
         Assertions.assertEquals(5, overlaps)
@@ -28,7 +29,16 @@ class Day05Tests {
         val hydrothermalVentureLines = File("src/test/resources/input-05.txt").readLines()
             .map { rawToHydrothermalVentureLine(it) }
 
-        val overlaps = calculateHydrothermalVentureThreat(hydrothermalVentureLines)
+        val overlaps = calculateHydrothermalVentureThreat(hydrothermalVentureLines, considerDiagonals = false)
+        println("We found $overlaps overlaps of hydrothermal ventures 🌪 You better watch out.")
+    }
+
+    @Test
+    fun calculateHydrothermalVentureThreatConsideringDiagonalsSolution() {
+        val hydrothermalVentureLines = File("src/test/resources/input-05.txt").readLines()
+            .map { rawToHydrothermalVentureLine(it) }
+
+        val overlaps = calculateHydrothermalVentureThreat(hydrothermalVentureLines, considerDiagonals = true)
         println("We found $overlaps overlaps of hydrothermal ventures 🌪 You better watch out.")
     }
 
