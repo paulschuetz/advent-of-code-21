@@ -14,7 +14,8 @@ fun calculateCheapestAlignment(initialHorizontalAlignments: List<Int>, increment
             if (neighbour.key != centerPosition) {
                 val distance = abs(centerPosition - neighbour.key)
                 totalCost += if (incrementalCosts) {
-                    val distanceCost = (1..distance).sum()
+                    // gauß sum formula
+                    val distanceCost = (distance * (distance + 1)) / 2
                     distanceCost * neighbour.value
                 } else {
                     distance * neighbour.value

@@ -24,7 +24,7 @@ class Day07Tests {
 
         val millis = measureTimeMillis {
             val totalFuel = calculateCheapestAlignment(initialHorizontalAlignments = initialHorizontalPositions, incrementalCosts = false)
-            println("The cheapest 🦀 alignment has a total cost of $totalFuel fuel ⛽💰 units. ")
+            println("The cheapest alignment of 🦀s has a total cost of $totalFuel fuel units ⛽")
         }
 
         println("The calculation took $millis milliseconds ⌛")
@@ -37,7 +37,7 @@ class Day07Tests {
 
         val millis = measureTimeMillis {
             val totalFuel = calculateCheapestAlignment(initialHorizontalAlignments = initialHorizontalPositions, incrementalCosts = true)
-            println("The cheapest 🦀 alignment has a total cost of $totalFuel fuel ⛽💰 units. ")
+            println("The cheapest alignment of 🦀s a total cost of $totalFuel fuel units ⛽")
         }
 
         println("The calculation took $millis milliseconds ⌛")
