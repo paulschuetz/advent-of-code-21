@@ -9,17 +9,19 @@ fun findLowPoints(heatmap: Array<Array<Int>>): Set<Coordinate> {
     val lowPoints = mutableSetOf<Coordinate>()
     for (y in heatmap.indices) {
         for (x in heatmap[y].indices) {
-            var isLowPoint = true
-            // above
-            if (y != 0 && heatmap[y][x] >= heatmap[y - 1][x]) isLowPoint = false
-            // under
-            if (y != yMaxIndex && heatmap[y][x] >= heatmap[y + 1][x]) isLowPoint = false
-            // left
-            if (x != 0 && heatmap[y][x] >= heatmap[y][x - 1]) isLowPoint = false
-            // right
-            if (x != xMaxIndex && heatmap[y][x] >= heatmap[y][x + 1]) isLowPoint = false
+            if (heatmap[y][x] != 9) {
+                var isLowPoint = true
+                // above
+                if (y != 0 && heatmap[y][x] >= heatmap[y - 1][x]) isLowPoint = false
+                // under
+                if (y != yMaxIndex && heatmap[y][x] >= heatmap[y + 1][x]) isLowPoint = false
+                // left
+                if (x != 0 && heatmap[y][x] >= heatmap[y][x - 1]) isLowPoint = false
+                // right
+                if (x != xMaxIndex && heatmap[y][x] >= heatmap[y][x + 1]) isLowPoint = false
 
-            if (isLowPoint) lowPoints.add(Coordinate(x = x, y = y))
+                if (isLowPoint) lowPoints.add(Coordinate(x = x, y = y))
+            }
         }
     }
 
@@ -48,7 +50,7 @@ fun calculateBasinsProduct(heatmap: Array<Array<Int>>): Int {
         basinSizes.add(size)
     }
 
-    return basinSizes.sortedDescending().take(3).reduce { acc, next -> acc * next}
+    return basinSizes.sortedDescending().take(3).reduce { acc, next -> acc * next }
 }
 
 /**
