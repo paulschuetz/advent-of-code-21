@@ -14,7 +14,7 @@ class Day09Tests {
     }
 
     @Test
-    fun calculateBasinSumTest() {
+    fun calculateBasinProductTest() {
         val heatmap = File("src/test/resources/input-09-example.txt").readLines()
             .map { line -> line.trim().toCharArray().map { it.toString().toInt() }.toTypedArray() }.toTypedArray()
 
@@ -23,7 +23,7 @@ class Day09Tests {
     }
 
     @Test
-    fun calculateBasinSumSolution() {
+    fun calculateBasinProductSolution() {
         val heatmap = File("src/test/resources/input-09.txt").readLines()
             .map { line -> line.trim().toCharArray().map { it.toString().toInt() }.toTypedArray() }.toTypedArray()
 
