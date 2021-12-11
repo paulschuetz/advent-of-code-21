@@ -2,7 +2,7 @@ fun countDumboOctopusFlashes(energyLevels: Array<Array<Int>>, steps: Int): Int {
     var flashes = 0
     for (step in 0 until steps) {
         // save which octopuses already flashed this round 🐙
-        val alreadyFlashed = mutableMapOf<Coordinate, Boolean>()
+        val alreadyFlashed = mutableSetOf<Coordinate>()
         // iterate over the 10 x 10 octopus energy level array
         for (y in energyLevels.indices) {
             for (x in energyLevels[y].indices) {
@@ -21,7 +21,7 @@ fun calculateFirstSynchronizedFlash(energyLevels: Array<Array<Int>>): Int {
     // until eternity
     while (true) {
         // save which octopuses already flashed this round
-        val alreadyFlashed = mutableMapOf<Coordinate, Boolean>()
+        val alreadyFlashed = mutableSetOf<Coordinate>()
         // iterate over the 10 x 10 octopus energy level array
         for (y in energyLevels.indices) {
             for (x in energyLevels[y].indices) {
@@ -35,15 +35,15 @@ fun calculateFirstSynchronizedFlash(energyLevels: Array<Array<Int>>): Int {
     }
 }
 
-private fun increaseEnergyLevel(energyLevels: Array<Array<Int>>, alreadyFlashed: MutableMap<Coordinate, Boolean>, coordinate: Coordinate) {
-    if (alreadyFlashed[coordinate] != null) return
+private fun increaseEnergyLevel(energyLevels: Array<Array<Int>>, alreadyFlashed: MutableSet<Coordinate>, coordinate: Coordinate) {
+    if (alreadyFlashed.contains(coordinate)) return
 
     // if we have energy level < 9 we will just increase the level by one
     if (energyLevels[coordinate.y][coordinate.x] < 9) {
         energyLevels[coordinate.y][coordinate.x] += 1
     } else {
 
-        alreadyFlashed[coordinate] = true
+        alreadyFlashed.add(coordinate)
         energyLevels[coordinate.y][coordinate.x] = 0
 
         for (neighbour in neighbourCoordinates(coordinate, maxIndexY = energyLevels.size - 1, maxIndexX = energyLevels.first().size - 1)) {
