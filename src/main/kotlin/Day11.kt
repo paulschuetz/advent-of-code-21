@@ -42,7 +42,7 @@ private fun increaseEnergyLevel(energyLevels: Array<Array<Int>>, alreadyFlashed:
     if (energyLevels[coordinate.y][coordinate.x] < 9) {
         energyLevels[coordinate.y][coordinate.x] += 1
     } else {
-
+        // it's going downnnnnn
         alreadyFlashed.add(coordinate)
         energyLevels[coordinate.y][coordinate.x] = 0
 
@@ -57,11 +57,13 @@ private fun increaseEnergyLevel(energyLevels: Array<Array<Int>>, alreadyFlashed:
  */
 private fun neighbourCoordinates(coordinate: Coordinate, maxIndexX: Int, maxIndexY: Int): Set<Coordinate> {
 
+    // resolve array restrictions
     val startX = if (coordinate.x > 0) coordinate.x - 1 else coordinate.x
     val startY = if (coordinate.y > 0) coordinate.y - 1 else coordinate.y
     val endX = if (coordinate.x < maxIndexX) coordinate.x + 1 else coordinate.x
     val endY = if (coordinate.y < maxIndexY) coordinate.y + 1 else coordinate.y
 
+    // combine in cartesian product
     return (startX..endX).flatMap { x ->
         (startY..endY).map { y ->
             Coordinate(x = x, y = y)
